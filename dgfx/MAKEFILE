@@ -1,0 +1,9 @@
+# Nmake macros for building Windows 32-Bit apps for OpenGL
+
+!include <ntwin32.mak>
+
+all: psxgfx.exe
+
+.c.exe:
+    $(cc) $(cflags) $(cdebug) $(cvars) $<
+    $(link) $(linkdebug) $(guiflags) -subsystem:console -entry:mainCRTStartup -out:$*.exe $*.obj $(guilibs)
