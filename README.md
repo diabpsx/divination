@@ -12,6 +12,15 @@ Usage: dgfx [hdr] [dat] [pal]
 - dat: .DAT graphic data file.
 - pal: File to output RGB palette data.
 
+### dtext
+Converts compiled string files (e.g. MAINTXT.ENG) back into plain text files.
+
+Usage: dtext [dat] [entries] [out]
+
+- dat: The compiled text file.
+- entries: Number of strings in the file. (This will be automated in the future)
+- out: File to output the text data.
+
 ### dstream
 Dumps the contents of stream files (.DIR/.BIN pair). These contain all of the game data, including binary overlays.
 
@@ -47,5 +56,5 @@ Usage: vag2wav [vag] [wav]
 A Visual Studio workspace is provided to compile the tools. Works with Visual C++ 5.0 and newer.
 
 # Credits
-- **dgfx**, **dstream**, and **dbank** written by GalaXyHaXz
+- **dgfx**, **dtext**, **dstream**, and **dbank** written by GalaXyHaXz
 - **vag2wav** taken from the [psxsdk](https://github.com/ColdSauce/psxsdk)
