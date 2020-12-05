@@ -15,10 +15,9 @@ Usage: dgfx [hdr] [dat] [pal]
 ### dtext
 Converts compiled string files (e.g. MAINTXT.ENG) back into plain text files.
 
-Usage: dtext [dat] [entries] [out]
+Usage: dtext [dat] [out]
 
 - dat: The compiled text file.
-- entries: Number of strings in the file. (This will be automated in the future)
 - out: File to output the text data.
 
 ### dstream

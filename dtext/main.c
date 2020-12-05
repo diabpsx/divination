@@ -25,17 +25,9 @@ unsigned char *LoadBinaryFile(char *file, int *bufsize)
 
 int main(int argc, char *argv[])
 {
-	if(argc != 4) {
-		fprintf(stderr, "Usage: dtext [dat] [entries] [out]\n");
+	if(argc != 3) {
+		fprintf(stderr, "Usage: dtext [dat] [out]\n");
 		return 0;
-	}
-
-	// todo: auto detect this
-	int numentries = atoi(argv[2]);
-
-	if(numentries <= 0 || numentries > 0xFFFF) {
-		fprintf(stderr, "Invalid number of string entries\n");
-		exit(-1);
 	}
 
 	int psize;
@@ -43,20 +35,17 @@ int main(int argc, char *argv[])
 
 	unsigned int *index = (unsigned int *)pf;
 
-	FILE *fout = fopen(argv[3], "wb");
+	int numentries = index[0] >> 2;
+
+	FILE *fout = fopen(argv[2], "wb");
 	if(fout == NULL) {
-		fprintf(stderr, "Can't create file %s\n", argv[3]);
+		fprintf(stderr, "Can't create file %s\n", argv[2]);
 		exit(-1);
 	}
 
 	char newline[] = "\\n";
 	int i;
 	for(i = 0; i < numentries; i++) {
-		if(index[i] >= psize - 2 || index[i] > 0xFFFF) {
-			// make sure we don't go out of bounds
-			fprintf(stderr, "Invalid entry %d\n", i);
-			exit(-1);
-		}
 		unsigned char *str = &pf[index[i]];
 		while(*str != '\0') {
 			if(*str == '\n') {
