@@ -20,6 +20,14 @@ Usage: dtext [dat] [out]
 - dat: The compiled text file.
 - out: File to output the text data.
 
+### dkanji
+Dumps Kanji font files (e.g. MAINTXT.OUT) into pixel-bit text files.
+
+Usage: dkanji [in] [out]
+
+- in: The Kanji font file.
+- out: File to output the text version of the font.
+
 ### dstream
 Dumps the contents of stream files (.DIR/.BIN pair). These contain all of the game data, including binary overlays.
 
