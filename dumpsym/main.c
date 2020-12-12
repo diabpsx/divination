@@ -65,9 +65,11 @@ static int parse_class(unsigned int class_type1)
 		break;
 	case 8:
 		printf("LABEL ");
+		isbool = 0;
 		break;
 	case 9:
 		printf("ULABEL ");
+		isbool = 0;
 		break;
 	case 10:
 		printf("MOS ");
@@ -114,15 +116,19 @@ static int parse_class(unsigned int class_type1)
 		break;
 	case 24:
 		printf("FILE ");
+		isbool = 0;
 		break;
 	case 25:
 		printf("LINE ");
+		isbool = 0;
 		break;
 	case 26:
 		printf("ALIAS ");
+		isbool = 0;
 		break;
 	case 27:
 		printf("HIDDEN ");
+		isbool = 0;
 		break;
 	}
 
