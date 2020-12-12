@@ -52,7 +52,7 @@ Usage: dbank [bof] [bnk]
 A batch script **dump_all.bat** is provided to extract all bank files.
 
 ### dumpsym
-Dumps a PSX symbol file into a readable output file.
+Dumps a PSX symbol file into a readable output file. Updated to fix `bool` types being output as NULL.
 
 Usage: dumpsym [sym_file]
 
