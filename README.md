@@ -51,6 +51,13 @@ Usage: dbank [bof] [bnk]
 
 A batch script **dump_all.bat** is provided to extract all bank files.
 
+### dumpsym
+Dumps a PSX symbol file into a readable output file.
+
+Usage: dumpsym [sym_file]
+
+- sym_file: .SYM symbol file.
+
 ### vag2wav
 Converts a PlayStation VAG sound file to a WAV file. VAG files are found in both the stream and bank files.
 
@@ -64,4 +71,5 @@ A Visual Studio workspace is provided to compile the tools. Works with Visual C+
 
 # Credits
 - **dgfx**, **dtext**, **dstream**, and **dbank** written by GalaXyHaXz
+- **dumpsym** reverse engineered official SDK tool [taken from here](https://github.com/lab313ru/dumpsym_src)
 - **vag2wav** taken from the [psxsdk](https://github.com/ColdSauce/psxsdk)
