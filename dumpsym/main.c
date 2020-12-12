@@ -9,17 +9,20 @@ static unsigned char class_types[] =
   0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00
 };
 
-static void parse_class(unsigned int class_type1)
+static int parse_class(unsigned int class_type1)
 {
     int index;
     char* tp;
     int found;
+	int isbool;
+
+	isbool = 1;
 
     printf("class ");
 
 	if (class_type1 + 1 > 0x6B) {
 		printf("?%d? ", class_type1);
-		return;
+		return isbool;
 	}
 
 	index = 28;
@@ -107,6 +110,7 @@ static void parse_class(unsigned int class_type1)
 		break;
 	case 23:
 		printf("EOS ");
+		isbool = 0;
 		break;
 	case 24:
 		printf("FILE ");
@@ -121,9 +125,11 @@ static void parse_class(unsigned int class_type1)
 		printf("HIDDEN ");
 		break;
 	}
+
+	return isbool;
 }
 
-static void parse_type(int class_type2)
+static void parse_type(int class_type2, int isbool)
 {
 	unsigned int type1; // eax
 
@@ -148,7 +154,11 @@ static void parse_type(int class_type2)
 	switch (class_type2)
 	{
 	case 0:
-		printf("NULL ");
+		if (isbool == 0) {
+			printf("NULL ");
+		} else {
+			printf("BOOL ");
+		}
 		break;
 	case 1:
 		printf("VOID ");
@@ -263,6 +273,7 @@ int main(int argc, const char** argv)
 	unsigned int func2_fmaskoffs;
 	unsigned int func2_line;
 	unsigned char mx_info;
+	int isbool;
 
 	if (argc != 2) {
 		show_help();
@@ -386,9 +397,9 @@ int main(int argc, const char** argv)
 		case 0x94u:
 			printf("$%08lx %x Def ", offset, 0x94);
 			class_def_type1 = read_word(f);
-			parse_class(class_def_type1);
+			isbool = parse_class(class_def_type1);
 			class_def_type2 = read_word(f);
-			parse_type(class_def_type2);
+			parse_type(class_def_type2, isbool);
 			class_def_obj_size = read_dword(f);
 			printf("size %ld ", class_def_obj_size);
 			printf("name ");
@@ -398,9 +409,9 @@ int main(int argc, const char** argv)
 		case 0x96u:
 			printf("$%08lx %x Def2 ", offset, tag);
 			class_def2_type1 = read_word(f);
-			parse_class(class_def2_type1);
+			isbool = parse_class(class_def2_type1);
 			class_def2_type2 = read_word(f);
-			parse_type(class_def2_type2);
+			parse_type(class_def2_type2, isbool);
 			class_def2_obj_size = read_dword(f);
 			printf("size %ld ", class_def2_obj_size);
 			class_def2_dims_count = read_word(f);
