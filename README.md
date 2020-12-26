@@ -52,7 +52,9 @@ Usage: dbank [bof] [bnk]
 A batch script **dump_all.bat** is provided to extract all bank files.
 
 ### dumpsym
-Dumps a PSX symbol file into a readable output file. Updated to fix `bool` types being output as NULL. Also note that `bool` is 4 bytes long on the PSX rather than 1 like it is with most compilers.
+Dumps a PSX symbol file into a readable output file. Updated to fix `bool` types being output as `NULL`. Also note that `bool` is 4 bytes long on the PSX rather than 1 like it is with most compilers.
+
+For Windows ported games the Microsoft type `BOOL` is type defined by the developer. For Diablo it is defined as `unsigned char`. So actually `BOOL/bool` end up having flipped byte sizes compared to the PC version of Diablo.
 
 Usage: dumpsym [sym_file]
 
